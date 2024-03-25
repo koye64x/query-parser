@@ -22,8 +22,9 @@ class TextConstant: SourceCodeItemType() {
     }
 
     override fun matchFull(s: String): Boolean {
-        //todo
-        return matchStart(s) && s.last() == '"'
+        return s.length > 1
+                && matchStart(s.substring(0, s.lastIndex-1))
+                && s.last() == '"'
     }
 
     fun getEscapeSymbol(): Char {
