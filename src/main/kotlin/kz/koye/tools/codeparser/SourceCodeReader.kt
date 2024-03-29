@@ -1,5 +1,7 @@
 package kz.koye.tools.codeparser
 
-interface SourceCodeReader: Iterator<Char> {
+import java.io.Closeable
+
+interface SourceCodeReader: Iterator<Char>, Closeable {
     fun getPosition(): Position
 }

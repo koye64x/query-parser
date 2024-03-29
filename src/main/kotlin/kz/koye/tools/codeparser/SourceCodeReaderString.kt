@@ -14,4 +14,7 @@ class SourceCodeReaderString(val s: String): SourceCodeReader {
         p += 1
         return s[p]
     }
+
+    override fun close() {
+    }
 }

@@ -1,6 +1,7 @@
 package kz.koye.tools.codeparser
 
 import kz.koye.tools.codeparser.primitive.*
+import kz.koye.tools.codeparser.primitive.sql.TextConstantSql
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.Test
@@ -12,12 +13,13 @@ class SourceCodeParserTests {
     fun parseText() {
         val parser = SourceCodeParser(
             listOf(
-                Name(),
-                NumberConstant(),
-                WhiteSpace(),
-                TextConstant(),
-                Bracket()
-            )
+                Name,
+                NumberConstant('.'),
+                WhiteSpace,
+                TextConstantSql(),
+                RoundBracket,
+                Comma
+            ) + listOf("=", ">=", "<=", "<", ">", "<>", "+", "-", "*", "/", "||").map { Operator(it) }
         )
         val sourceCode = "foo name2 (3456) \"world\""
         val reader = SourceCodeReaderString(sourceCode)
